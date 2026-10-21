@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+</head>
+<body class="sb-nav-fixed">
+    <partial name="TopNav" />
+    <div id="layoutSidenav">
+        <partial name="LeftMenu" />
+        <div id="layoutSidenav_content">
+            <main class="page-content">@RenderBody()</main>
+            <footer class="page-footer"><partial name="Footer" /></footer>
+        </div>
+    </div>
+    <script src="~/js/scripts.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

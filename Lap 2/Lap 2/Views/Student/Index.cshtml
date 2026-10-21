@@ -1,0 +1,29 @@
+@model IEnumerable<Lap_2.Models.Student>
+@{
+    ViewData["Title"] = "Danh sách sinh viên";
+    Layout = "~/Views/Shared/MyLayoutHelper.cshtml";
+}
+<p class="actions"><a class="create-button" href="#">Create Student</a></p>
+<table class="data-table">
+    <thead>
+        <tr><th>Mã</th><th>Họ tên</th><th>Ngày sinh</th><th>Ngành</th><th>Giới tính</th><th>Hệ ĐT</th><th>Địa chỉ</th><th>Email</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.Id</td><td>@student.FullName</td><td>@student.DateOfBirth.ToString("M/d/yyyy h:mm:ss tt")</td><td>@student.Major</td><td>@student.Gender</td><td>@student.StudyMode</td><td>@student.Address</td><td>@student.Email</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    <script>
+        const table = document.querySelector("table");
+        if (table) {
+            table.addEventListener("click", () => {
+                table.style.backgroundColor = "yellow";
+            });
+        }
+    </script>
+}
