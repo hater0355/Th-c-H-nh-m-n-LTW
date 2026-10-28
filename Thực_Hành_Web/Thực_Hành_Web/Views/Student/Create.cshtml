@@ -1,0 +1,94 @@
+@model Thực_Hành_Web.Models.CreateStudentViewModel
+@{
+    ViewData["Title"] = "Thêm sinh viên";
+}
+
+<section class="page-heading">
+    <div>
+        <a asp-route="StudentList" class="back-link">← Danh sách sinh viên</a>
+        <p class="eyebrow mt-4">HỒ SƠ SINH VIÊN</p>
+        <h1>Thêm sinh viên mới</h1>
+        <p class="text-secondary mb-0">Nhập thông tin bên dưới để thêm sinh viên vào danh sách.</p>
+    </div>
+</section>
+
+<form asp-route="StudentAddPost" method="post" enctype="multipart/form-data" class="student-form">
+    <div asp-validation-summary="All" class="validation-summary" aria-live="polite"></div>
+
+    <div class="form-section-title">Thông tin cơ bản</div>
+    <div class="form-grid">
+        <div class="form-field">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" placeholder="Ví dụ: Nguyễn Lan" autocomplete="name" />
+            <span asp-validation-for="Name" class="field-validation"></span>
+        </div>
+        <div class="form-field">
+            <label asp-for="Email" class="form-label"></label>
+            <input asp-for="Email" class="form-control" placeholder="ten@gmail.com" autocomplete="email" />
+            <span asp-validation-for="Email" class="field-validation"></span>
+        </div>
+        <div class="form-field">
+            <label asp-for="Password" class="form-label"></label>
+            <input asp-for="Password" class="form-control" placeholder="Nhập mật khẩu" autocomplete="new-password" />
+            <div class="form-hint">Ít nhất 8 ký tự, gồm chữ hoa, chữ thường, số và ký tự đặc biệt.</div>
+            <span asp-validation-for="Password" class="field-validation"></span>
+        </div>
+        <div class="form-field">
+            <label asp-for="DateOfBirth" class="form-label"></label>
+            <input asp-for="DateOfBirth" class="form-control" min="1963-01-01" max="2005-12-31" />
+            <div class="form-hint">Ngày sinh từ 01/01/1963 đến 31/12/2005.</div>
+            <span asp-validation-for="DateOfBirth" class="field-validation"></span>
+        </div>
+        <div class="form-field">
+            <label asp-for="Score" class="form-label"></label>
+            <input asp-for="Score" type="number" class="form-control" min="0" max="10" step="0.1" placeholder="Ví dụ: 8.5" />
+            <span asp-validation-for="Score" class="field-validation"></span>
+        </div>
+        <div class="form-field">
+            <label asp-for="Branch" class="form-label"></label>
+            <select asp-for="Branch" class="form-select" asp-items="Html.GetEnumSelectList<Thực_Hành_Web.Models.Branch>()">
+                <option value="">Chọn ngành học</option>
+            </select>
+            <span asp-validation-for="Branch" class="field-validation"></span>
+        </div>
+        <div class="form-field">
+            <label class="form-label d-block">Giới tính</label>
+            <div class="choice-group">
+                @foreach (var gender in Enum.GetValues<Thực_Hành_Web.Models.Gender>())
+                {
+                    <label class="choice-option">
+                        <input asp-for="Gender" type="radio" value="@gender" />
+                        <span>@(gender == Thực_Hành_Web.Models.Gender.Male ? "Nam" : "Nữ")</span>
+                    </label>
+                }
+            </div>
+            <span asp-validation-for="Gender" class="field-validation"></span>
+        </div>
+        <div class="form-field form-field-wide">
+            <label asp-for="Address" class="form-label"></label>
+            <textarea asp-for="Address" class="form-control" rows="3" placeholder="Số nhà, đường, phường/xã..."></textarea>
+            <span asp-validation-for="Address" class="field-validation"></span>
+        </div>
+        <div class="form-field">
+            <label asp-for="Avatar" class="form-label"></label>
+            <input asp-for="Avatar" type="file" class="form-control" accept=".jpg,.jpeg,.png,.gif,.webp,image/jpeg,image/png,image/gif,image/webp" />
+            <div class="form-hint">JPG, PNG, GIF hoặc WEBP · tối đa 5 MB</div>
+            <span asp-validation-for="Avatar" class="field-validation"></span>
+        </div>
+        <div class="form-field form-field-center">
+            <label class="check-option">
+                <input asp-for="IsRegular" class="form-check-input" />
+                <span>Sinh viên hệ chính quy</span>
+            </label>
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <a asp-route="StudentList" class="btn btn-light">Hủy</a>
+        <button type="submit" class="btn btn-primary btn-add">Lưu sinh viên</button>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

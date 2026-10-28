@@ -1,0 +1,17 @@
+@model IEnumerable<Thực_Hành_Web.Models.MenuItem>
+
+<nav class="sb-sidenav" aria-label="Menu bổ trợ">
+    <div class="sb-sidenav-menu">
+        <div class="sidenav-heading">Core</div>
+        <a class="sidenav-link" href="/">⌂ <span>Dashboard</span></a>
+        <div class="sidenav-heading">Addons</div>
+        @foreach (var item in Model)
+        {
+            <a class="sidenav-link @(item.Name == "Students" ? "active" : string.Empty)" href="@item.Link">
+                <span class="sidenav-icon">@(item.Name == "Students" ? "♙" : item.Name == "Learners" ? "♧" : "▦")</span>
+                <span>@item.Name</span>
+            </a>
+        }
+    </div>
+    <div class="sidenav-footer"><span class="online-indicator"></span> Menu tải từ ViewComponent</div>
+</nav>

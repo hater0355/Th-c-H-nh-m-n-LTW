@@ -1,0 +1,68 @@
+html { min-height: 100%; font-size: 15px; }
+body { min-height: 100vh; margin: 0; color: #18233a; background: #f5f7fb; font-family: Inter, "Segoe UI", Arial, sans-serif; }
+.navbar { min-height: 72px; background: rgba(255,255,255,.96) !important; }
+.navbar .container-fluid { max-width: 1440px; padding-right: 32px; padding-left: 32px; }
+.navbar-brand { display: inline-flex; align-items: center; gap: 10px; color: #18233a !important; font-weight: 700; letter-spacing: -.02em; }
+.brand-mark { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 11px; color: #fff; background: #3d63dd; font-size: 17px; }
+.navbar-nav { gap: 8px; }
+.nav-link { color: #68738a !important; font-weight: 550; }
+.nav-link:hover { color: #3459cf !important; }
+.container:has(.page-heading) { max-width: 1440px; padding: 46px 32px 90px; }
+.page-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 30px; }
+.page-heading h1 { margin: 0 0 8px; color: #17223a; font-size: clamp(1.8rem, 3vw, 2.35rem); font-weight: 720; letter-spacing: -.045em; }
+.eyebrow { margin: 0 0 9px; color: #526fe1; font-size: .72rem; font-weight: 750; letter-spacing: .14em; }
+.text-secondary { color: #7a8499 !important; }
+.btn { border-radius: 9px; font-weight: 650; }
+.btn-primary { background: #4265dd; border-color: #4265dd; }
+.btn-primary:hover { background: #3455c8; border-color: #3455c8; }
+.btn-add { padding: 11px 18px; box-shadow: 0 5px 13px rgba(58,89,196,.17); }
+.student-summary { display: inline-flex; align-items: center; gap: 14px; margin: 0 0 15px; padding: 10px 15px; border: 1px solid #e8ebf3; border-radius: 10px; background: #fff; }
+.summary-label { color: #737f95; font-size: .88rem; }
+.student-summary strong { color: #263b83; font-size: 1.1rem; }
+.student-table-wrap, .student-form { overflow: hidden; border: 1px solid #e7eaf1; border-radius: 14px; background: #fff; box-shadow: 0 8px 28px rgba(28,43,78,.045); }
+.student-table { min-width: 1050px; color: #4b566b; font-size: .88rem; }
+.student-table thead th { padding: 16px 15px; border-bottom: 1px solid #e9ecf3; color: #758097; background: #fafbfe; font-size: .73rem; font-weight: 700; letter-spacing: .035em; white-space: nowrap; }
+.student-table tbody td { padding: 14px 15px; border-color: #eff1f6; white-space: nowrap; }
+.student-table tbody tr:last-child td { border-bottom: 0; }
+.student-identity { display: flex; min-width: 170px; align-items: center; gap: 10px; }
+.student-avatar { width: 36px; height: 36px; flex: 0 0 36px; border-radius: 50%; object-fit: cover; }
+.avatar-placeholder { display: grid; place-items: center; color: #425fc4; background: #e9edff; font-weight: 700; }
+.student-name { color: #25314a; font-weight: 650; }
+.student-id { color: #77829a; font-variant-numeric: tabular-nums; }
+.status-badge { display: inline-block; padding: 5px 9px; border-radius: 20px; font-size: .77rem; font-weight: 650; }
+.status-regular { color: #277454; background: #e7f6ee; }
+.status-parttime { color: #8b6821; background: #fff4d8; }
+.email-link { color: #536cce; text-decoration: none; }
+.email-link:hover { text-decoration: underline; }
+.back-link { color: #5268bd; font-size: .9rem; font-weight: 620; text-decoration: none; }
+.back-link:hover { color: #304eae; }
+.student-form { padding: 28px 32px 24px; overflow: visible; }
+.form-section-title { margin-bottom: 21px; color: #26334d; font-size: 1rem; font-weight: 700; }
+.form-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 21px 24px; }
+.form-field { min-width: 0; }
+.form-field-wide { grid-column: 1 / -1; }
+.form-label { margin-bottom: 8px; color: #35415a; font-size: .87rem; font-weight: 650; }
+.form-control, .form-select { min-height: 45px; border-color: #dfe4ee; border-radius: 8px; color: #25314a; font-size: .92rem; }
+.form-control::placeholder { color: #a3aabb; }
+.form-control:focus, .form-select:focus { border-color: #8297ef; box-shadow: 0 0 0 .2rem rgba(66,101,221,.12); }
+textarea.form-control { min-height: 88px; }
+.choice-group { display: flex; min-height: 44px; align-items: center; gap: 22px; }
+.choice-option, .check-option { display: inline-flex; align-items: center; gap: 9px; color: #49556b; cursor: pointer; }
+.choice-option input { width: 16px; height: 16px; accent-color: #4265dd; }
+.form-field-center { display: flex; align-items: end; padding-bottom: 8px; }
+.check-option .form-check-input { margin: 0; }
+.form-hint { margin-top: 7px; color: #8a94a8; font-size: .78rem; }
+.field-validation, .validation-summary { color: #c2414b; font-size: .82rem; }
+.validation-summary:empty { display: none; }
+.form-actions { display: flex; justify-content: end; gap: 10px; margin-top: 30px; padding-top: 22px; border-top: 1px solid #edf0f5; }
+.form-actions .btn-light { padding: 11px 18px; color: #5c667a; background: #f2f4f8; }
+footer.footer { padding: 18px 0; border-color: #e8ebf1 !important; background: #fff; font-size: .82rem; }
+@media (max-width: 767.98px) {
+  .navbar .container-fluid { padding-right: 18px; padding-left: 18px; }
+  .container:has(.page-heading) { padding: 30px 18px 70px; }
+  .page-heading { align-items: start; flex-direction: column; }
+  .student-form { padding: 22px 18px; }
+  .form-grid { grid-template-columns: 1fr; gap: 17px; }
+  .form-field-wide { grid-column: auto; }
+  .form-field-center { align-items: start; padding-top: 5px; }
+}

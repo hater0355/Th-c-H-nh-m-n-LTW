@@ -1,0 +1,42 @@
+@model IEnumerable<Thực_Hành_Web.Models.Learner>
+@{
+    ViewData["Title"] = "Danh sách người học";
+}
+
+<section class="page-heading">
+    <div>
+        <p class="eyebrow">CƠ SỞ DỮ LIỆU SCHOOL</p>
+        <h1>Danh sách người học</h1>
+        <p class="text-secondary mb-0">Quản lý hồ sơ người học và chuyên ngành.</p>
+    </div>
+    <a asp-action="Create" class="btn btn-primary btn-add">+ Thêm người học</a>
+</section>
+
+@if (TempData["LearnerDeleteError"] is string deleteError)
+{
+    <div class="alert alert-warning" role="alert">@deleteError</div>
+}
+
+<div class="student-summary"><span class="summary-label">Tổng số người học</span><strong>@Model.Count()</strong></div>
+<div class="table-responsive student-table-wrap">
+    <table class="table student-table align-middle mb-0">
+        <thead><tr><th>Mã</th><th>Tên</th><th>Họ</th><th>Chuyên ngành</th><th>Ngày nhập học</th><th>Chức năng</th></tr></thead>
+        <tbody>
+        @foreach (var learner in Model)
+        {
+            <tr>
+                <td><span class="student-id">#@learner.LearnerID</span></td>
+                <td class="student-name">@learner.FirstMidName</td>
+                <td>@learner.LastName</td>
+                <td>@learner.Major?.MajorName</td>
+                <td>@learner.EnrollmentDate.ToString("dd/MM/yyyy")</td>
+                <td class="learner-actions">
+                    <a asp-action="Edit" asp-route-id="@learner.LearnerID">Sửa</a>
+                    <span aria-hidden="true">·</span>
+                    <a class="danger-link" asp-action="Delete" asp-route-id="@learner.LearnerID">Xóa</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

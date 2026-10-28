@@ -1,0 +1,77 @@
+@model IReadOnlyList<Thực_Hành_Web.Models.Student>
+@{
+    ViewData["Title"] = "Danh sách sinh viên";
+    Layout = "~/Views/Shared/MyLayoutHelper.cshtml";
+    string BranchName(Thực_Hành_Web.Models.Branch? branch) => branch switch
+    {
+        Thực_Hành_Web.Models.Branch.IT => "Công nghệ thông tin",
+        Thực_Hành_Web.Models.Branch.BE => "Kinh tế",
+        Thực_Hành_Web.Models.Branch.CE => "Công trình",
+        Thực_Hành_Web.Models.Branch.EE => "Điện - Điện tử",
+        _ => "Chưa chọn"
+    };
+}
+
+<section class="page-heading">
+    <div>
+        <p class="eyebrow">QUẢN TRỊ ĐÀO TẠO</p>
+        <h1>Danh sách sinh viên</h1>
+        <p class="text-secondary mb-0">Theo dõi thông tin và ngành học của sinh viên.</p>
+    </div>
+    <a asp-route="StudentAdd" class="btn btn-primary btn-add">+ Thêm sinh viên</a>
+</section>
+
+<div class="student-summary">
+    <span class="summary-label">Tổng số sinh viên</span>
+    <strong>@Model.Count</strong>
+</div>
+
+@section Scripts {
+    <script src="~/js/student-list.js" asp-append-version="true"></script>
+}
+
+<div class="table-responsive student-table-wrap">
+    <table class="table student-table align-middle mb-0">
+        <thead>
+            <tr>
+                <th scope="col">Sinh viên</th>
+                <th scope="col">Mã</th>
+                <th scope="col">Ngày sinh</th>
+                <th scope="col">Điểm</th>
+                <th scope="col">Ngành học</th>
+                <th scope="col">Giới tính</th>
+                <th scope="col">Hệ đào tạo</th>
+                <th scope="col">Địa chỉ</th>
+                <th scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>
+                    <div class="student-identity">
+                        @if (!string.IsNullOrWhiteSpace(student.AvatarPath))
+                        {
+                            <img class="student-avatar" src="@student.AvatarPath" alt="Ảnh đại diện @student.Name" />
+                        }
+                        else
+                        {
+                            <span class="student-avatar avatar-placeholder">@student.Name[..1]</span>
+                        }
+                        <span class="student-name">@student.Name</span>
+                    </div>
+                </td>
+                <td><span class="student-id">#@student.Id</span></td>
+                <td>@student.DateOfBirth.ToString("dd/MM/yyyy")</td>
+                <td>@student.Score?.ToString("0.0")</td>
+                <td>@BranchName(student.Branch)</td>
+                <td>@(student.Gender == Thực_Hành_Web.Models.Gender.Male ? "Nam" : "Nữ")</td>
+                <td><span class="status-badge @(student.IsRegular ? "status-regular" : "status-parttime")">@(student.IsRegular ? "Chính quy" : "Phi chính quy")</span></td>
+                <td>@(string.IsNullOrWhiteSpace(student.Address) ? "—" : student.Address)</td>
+                <td><a class="email-link" href="mailto:@student.Email">@student.Email</a></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

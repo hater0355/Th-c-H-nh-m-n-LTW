@@ -1,0 +1,35 @@
+@model Thực_Hành_Web.Models.Learner
+@{
+    ViewData["Title"] = "Xóa người học";
+    var hasEnrollments = (bool)(ViewBag.HasEnrollments ?? false);
+}
+
+<section class="page-heading"><div><a asp-action="Index" class="back-link">← Danh sách người học</a><p class="eyebrow mt-4">HỒ SƠ NGƯỜI HỌC · #@Model.LearnerID</p><h1>Xóa người học</h1><p class="text-secondary mb-0">Kiểm tra thông tin trước khi xác nhận.</p></div></section>
+
+<div class="student-form learner-detail">
+    @if (TempData["LearnerDeleteError"] is string deleteError)
+    {
+        <div class="alert alert-warning" role="alert">@deleteError</div>
+    }
+    else if (hasEnrollments)
+    {
+        <div class="alert alert-warning" role="alert">Người học đang có @Model.Enrollments.Count đăng ký khóa học nên không thể xóa.</div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">Bạn có chắc chắn muốn xóa người học này?</div>
+    }
+    <dl class="row learner-details">
+        <dt class="col-sm-3">Tên</dt><dd class="col-sm-9">@Model.FirstMidName</dd>
+        <dt class="col-sm-3">Họ</dt><dd class="col-sm-9">@Model.LastName</dd>
+        <dt class="col-sm-3">Chuyên ngành</dt><dd class="col-sm-9">@Model.Major?.MajorName</dd>
+        <dt class="col-sm-3">Ngày nhập học</dt><dd class="col-sm-9">@Model.EnrollmentDate.ToString("dd/MM/yyyy")</dd>
+    </dl>
+    <div class="form-actions">
+        <a asp-action="Index" class="btn btn-light">Quay lại</a>
+        @if (!hasEnrollments && TempData["LearnerDeleteError"] is null)
+        {
+            <form asp-action="Delete" asp-route-id="@Model.LearnerID" method="post"><input type="hidden" asp-for="LearnerID" /><button type="submit" class="btn btn-danger">Xóa người học</button></form>
+        }
+    </div>
+</div>

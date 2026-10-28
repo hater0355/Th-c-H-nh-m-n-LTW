@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - DB First School</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-dark bg-dark"><div class="container"><a class="navbar-brand" asp-controller="Learners" asp-action="Index">DB First School</a><a class="btn btn-outline-light btn-sm" asp-controller="Learners" asp-action="Index">Người học</a></div></nav>
+    <main class="container py-5">@RenderBody()</main>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
